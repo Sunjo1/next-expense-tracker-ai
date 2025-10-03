@@ -1,9 +1,15 @@
-import React from 'react'
 
-const page = () => {
+import { currentUser } from '@clerk/nextjs/server'
+import Guest from '@/components/Guest'
+
+export default async function HomePage() {
+  const user = await currentUser()
+  if (!user) {
+    return <Guest />
+  }
   return (
-    <div className='bg-red-400'>page</div>
+    <div className='text-red-400 dark:text-red-300'>
+      <h1>Home</h1>
+    </div>
   )
 }
-
-export default page
